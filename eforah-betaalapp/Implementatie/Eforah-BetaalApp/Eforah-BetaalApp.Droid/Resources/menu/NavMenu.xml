@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <group>
+    <item
+      android:id="@+id/nav_scanner"
+      android:title="@string/link_QRscanner" />
+    <item
+      android:id="@+id/nav_saldo"
+      android:title="@string/link_saldo" />
+    <item
+      android:id="@+id/nav_announcements"
+      android:title="@string/link_announcements" />
+    <item
+      android:id="@+id/nav_agenda"
+      android:title="@string/link_agenda" />
+    <item
+      android:id="@+id/nav_members"
+      android:title="@string/link_members" />
+    <!--<item
+      android:id="@+id/nav_files"
+      android:title="@string/link_files" />-->
+    <item
+      android:id="@+id/nav_facebook"
+      android:title="@string/link_facebookfeed" />
+    <!--<item
+      android:id="@+id/nav_club_info"
+      android:title="@string/link_club_info" />-->
+    <item android:layout_height = "fill_parent"/>
+    <item android:gravity="bottom"
+      android:id="@+id/nav_club_select"
+      android:title="@string/link_change_club" />
+    <item android:gravity="bottom"
+      android:id="@+id/nav_login"
+      android:title="@string/link_logout" />
+  </group>
+</menu>

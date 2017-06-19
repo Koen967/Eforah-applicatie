@@ -1,0 +1,56 @@
+﻿@model IEnumerable<EforahWebapp.Models.Vereniging>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table id="dataTable" class="table display">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.naam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.telefoonnummer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.naam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefoonnummer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.verenigingId }) |
+                @Html.ActionLink("Wijzigen", "Edit", new { id=item.verenigingId }) |
+                @Html.ActionLink("Verwijderen", "Delete", new { id=item.verenigingId })
+            </td>
+        </tr>
+}
+    </tbody>
+
+</table>
+
+<button class="btn btn-info col-md-2" type="button" id="HomeButton" value="Home"
+        onclick="location.href='@Url.Action("index", "Home")'">
+    Home
+</button>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/dataTables")
+}

@@ -1,0 +1,77 @@
+﻿@model IEnumerable<EforahWebapp.Models.Lid>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Nieuw lid maken", "Create")
+</p>
+@*@using (Html.BeginForm("IndexSearch", "Lid"))
+{
+    <div class="form-group">
+        <div class="col-md-12" style="margin-bottom: 10px">
+            @Html.TextBox("voornaamSearch", "", new { @class = "form-control col-md-9", @placeholder = "voornaam" })
+            @Html.TextBox("achternaamSearch", "", new { @class = "form-control col-md-9", @placeholder = "achternaam" })
+            <input type="submit" value="Zoeken" class="btn btn-default col-md-offset-1 col-md-2" />
+        </div>
+    </div>
+}*@
+
+<table id="dataTable" class="table display">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Gebruiker.gebruikersnaam)
+            </th>
+            <th>
+                vereniging @Html.DisplayNameFor(model => model.Vereniging.naam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.saldo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.rol)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gebruiker.voornaam) @Html.DisplayFor(modelItem => item.Gebruiker.achternaam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vereniging.naam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.saldo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.rol)
+            </td>
+            <td>
+                @Html.ActionLink("Wijzigen", "Edit", new { id=item.lidId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.lidId }) |
+                @Html.ActionLink("Verwijderen", "Delete", new { id=item.lidId })
+            </td>
+        </tr>
+    }
+    </tbody>
+
+
+</table>
+<button class="btn btn-info col-md-2" type="button" id="HomeButton" value="Home" style="margin-bottom:4px"
+        onclick="location.href='@Url.Action("index", "Home")'">
+    Home
+</button>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/dataTables")
+}

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        android:id="@+id/standardHeader"
+        layout="@layout/MainToolbar" />
+    <LinearLayout
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="20dp"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent">
+        <TextView
+            android:text="Uw saldo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:textSize="40dp"
+            android:id="@+id/tvSaldo_yourSaldo" />
+        <TextView
+            android:text=""
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="90dp"
+            android:textColor="@color/colorAccentLight"
+            android:textStyle="bold"
+            android:id="@+id/tvSaldo_currentSaldo" />
+        <TextView
+            android:layout_marginTop="30dp"
+            android:text="Laatste transacties"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-light"
+            android:textSize="25dp"
+            android:id="@+id/tvSaldo_lastTransactions" />
+        <TextView
+            android:text=""
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-thin"
+            android:textSize="20dp"
+            android:id="@+id/tvSaldo_transaction1" />
+        <TextView
+            android:text=""
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-thin"
+            android:textSize="20dp"
+            android:id="@+id/tvSaldo_transaction2" />
+        <TextView
+            android:text=""
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-thin"
+            android:textSize="20dp"
+            android:id="@+id/tvSaldo_transaction3" />
+        <TextView
+            android:text=""
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-thin"
+            android:textSize="20dp"
+            android:id="@+id/tvSaldo_transaction4" />
+        <TextView
+            android:text=""
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-thin"
+            android:textSize="20dp"
+            android:id="@+id/tvSaldo_transaction5" />
+    </LinearLayout>
+</LinearLayout>

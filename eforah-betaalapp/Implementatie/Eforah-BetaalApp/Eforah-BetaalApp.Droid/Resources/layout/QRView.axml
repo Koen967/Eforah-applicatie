@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/top_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <android.support.v7.widget.Toolbar
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainToolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="?attr/actionBarSize"
+    android:background="?attr/colorPrimary"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+    <TextView
+      android:fontFamily="sans-serif-light"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="33dp"
+        android:text=""
+        android:layout_gravity="center"
+        android:id="@+id/toolbarTitle" />
+  </android.support.v7.widget.Toolbar>
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/mainToolbar">
+      
+      <TextView
+          android:text="Vereniging"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textSize="25dp"
+          android:gravity="center_horizontal"
+          android:fontFamily="sans-serif-light"
+          android:id="@+id/vereniging_naam" />
+
+        <FrameLayout
+            android:id="@+id/content_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+      
+    <RelativeLayout
+            android:layout_width="350dp"
+            android:layout_height="350dp"
+            android:layout_alignParentBottom="false"
+            android:layout_margin="45dp"
+            android:layout_centerInParent="true">
+            <TextView
+                android:id="@+id/QR_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/QR_info_text" />
+            <ImageView
+                android:src="@android:drawable/ic_menu_gallery"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/QRView" />
+        </RelativeLayout>
+        <android.support.design.widget.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:id="@+id/nav_view"
+        app:menu="@menu/navmenu"
+        app:headerLayout="@layout/header" />
+    </android.support.v4.widget.DrawerLayout>
+</RelativeLayout>

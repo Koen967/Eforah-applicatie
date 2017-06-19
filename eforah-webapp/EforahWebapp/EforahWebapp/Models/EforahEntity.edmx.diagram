@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="edfd8d84dc214d58a1eeb2b44614264c" Name="Diagram1" ZoomLevel="85">
+        <EntityTypeShape EntityType="eforahbetaalappModel.Bestand" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="eforahbetaalappModel.Gebruiker" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="eforahbetaalappModel.Lid" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="eforahbetaalappModel.Locatie" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="eforahbetaalappModel.Mededeling" Width="1.5" PointX="5.25" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="eforahbetaalappModel.Transactie" Width="1.5" PointX="7.5" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="eforahbetaalappModel.Vereniging" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <AssociationConnector Association="eforahbetaalappModel.FK_BESTAND_RLVERENIG_VERENIGI" ManuallyRouted="false" />
+        <AssociationConnector Association="eforahbetaalappModel.FK_GEBRUIKER_GEBRUIKERID" ManuallyRouted="false" />
+        <AssociationConnector Association="eforahbetaalappModel.FK_LOCATIE_LOCATIEID_GEB" ManuallyRouted="false" />
+        <AssociationConnector Association="eforahbetaalappModel.FK_LID_LIDID_TRANSACTIE" ManuallyRouted="false" />
+        <AssociationConnector Association="eforahbetaalappModel.FK_VERENIGING_VERENIGINGID" ManuallyRouted="false" />
+        <AssociationConnector Association="eforahbetaalappModel.FK_VERENIGI_RL_VERENI_LOCATIE" ManuallyRouted="false" />
+        <AssociationConnector Association="eforahbetaalappModel.FK_MEDEDELI_RL_VERENI_VERENIGI" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="eforahbetaalappModel.C__EFMigrationsHistory" Width="1.5" PointX="7.375" PointY="4.75" />
+        <EntityTypeShape EntityType="eforahbetaalappModel.sysdiagrams" Width="1.5" PointX="7.375" PointY="7.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

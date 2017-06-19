@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp" >
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+    <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lid_foto" />
+  <TextView
+      android:id="@+id/lid_email"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:textSize="16dp"
+      android:paddingTop="5dp"
+      android:paddingBottom="5dp"
+      android:text="test"
+      android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
+      android:autoLink="email" />
+  <TextView
+      android:id="@+id/lid_telefoonnummer"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textSize="16dp"
+      android:paddingTop="5dp"
+      android:paddingBottom="5dp"
+      android:text="test"
+      android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
+      android:autoLink="phone" />
+  <TextView
+      android:id="@+id/lid_altNummer"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textSize="16dp"
+      android:paddingTop="5dp"
+      android:paddingBottom="5dp"
+      android:text="test"
+      android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft"
+      android:autoLink="phone" />
+  <TextView
+      android:id="@+id/lid_straat"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textSize="16dp"
+      android:paddingTop="5dp"
+      android:paddingBottom="5dp"
+      android:text="test"
+      android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft" />
+  <TextView
+      android:id="@+id/lid_postcode"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textSize="16dp"
+      android:paddingTop="5dp"
+      android:paddingBottom="5dp"
+      android:text="test"
+      android:paddingLeft="?android:attr/expandableListPreferredChildPaddingLeft" />
+  </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,50 @@
+﻿@model EforahWebapp.Models.Mededeling
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Mededeling</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.plaatsingDatum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.plaatsingDatum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.titel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.titel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mededeling1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mededeling1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vereniging.naam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vereniging.naam)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Wijzigen", "Edit", new { id = Model.mededelingId }) |
+    @Html.ActionLink("Terug naar lijst", "Index")
+</p>

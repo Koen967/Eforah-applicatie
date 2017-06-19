@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="QRCode">QR Code</string>
+  <string name="QR_info_text">Laat deze QR-Code scannen om te betalen.</string>
+  <string name="ApplicationName">Eforah Betaal App</string>
+  <string name="Back">Terug</string>
+  <string name="VerenigingAgenda">Agenda</string>
+  <string name="FacebookFeed">Facebook</string>
+  <string name="open_drawer">Open drawer</string>
+  <string name="close_drawer">Close drawer</string>
+  <string name="Loggout">Uitloggen</string>
+  <string name="menu">Menu</string>
+
+  <string name="link_QRscanner">QR scanner</string>
+  <string name="link_saldo">Bekijk saldo</string>
+  <string name="link_announcements">Mededelingen</string>
+  <string name="link_agenda">Agenda</string>
+  <string name="link_members">Ledenlijst</string>
+  <string name="link_files">Bestanden</string>
+  <string name="link_facebookfeed">Facebook</string>
+  <string name="link_club_info">Vereniging info</string>
+  <string name="link_change_club">Wissel vereniging</string>
+  <string name="link_logout">Log uit</string>
+</resources>

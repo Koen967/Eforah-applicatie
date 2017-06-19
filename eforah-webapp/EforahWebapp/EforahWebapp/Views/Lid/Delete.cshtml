@@ -1,0 +1,56 @@
+﻿@model EforahWebapp.Models.Lid
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Lid verwijderen</h2>
+
+<h3>Weet u zeker dat je dit lid wilt verwijderen?</h3>
+<div>
+    <h4>Lid</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Gebruiker.gebruikersnaam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gebruiker.voornaam) @Html.DisplayFor(model => model.Gebruiker.achternaam)
+        </dd>
+
+        <dt>
+            Vereniging
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vereniging.naam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.saldo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.saldo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rol)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rol)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Verwijderen" class="btn btn-default" /> |
+            @Html.ActionLink("Terug naar lijst", "Index")
+        </div>
+    }
+</div>

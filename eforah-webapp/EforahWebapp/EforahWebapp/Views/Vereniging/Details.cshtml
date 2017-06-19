@@ -1,0 +1,60 @@
+﻿@model EforahWebapp.Models.Vereniging
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Vereniging</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Vereniging
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.naam)
+        </dd>
+
+        <dt>
+            Telefoon nummer
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefoonnummer)
+        </dd>
+
+        <dt>
+            Email
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            Postcode
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Locatie.postcode)
+        </dd>
+
+        <dt>
+            Adres
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Locatie.adres)
+            @Html.DisplayFor(model => model.Locatie.huisnummer)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Wijzigen", "Edit", new { id = Model.verenigingId }) |
+    @Html.ActionLink("Ledenlijst", "Index", "Lid", new { id = Model.verenigingId }, null) |
+    @Html.ActionLink("Terug naar lijst", "Index")
+</p>

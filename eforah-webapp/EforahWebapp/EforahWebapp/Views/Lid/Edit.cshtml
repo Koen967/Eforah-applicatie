@@ -1,0 +1,71 @@
+﻿@model EforahWebapp.Models.Lid
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Lid Wijzigen</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Lid</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.lidId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Gebruiker.achternaam, "achternaam", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Gebruiker.achternaam, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                @Html.HiddenFor(model => model.gebruikerId)
+                @*@Html.DropDownList("gebruikerId", null, htmlAttributes: new { @class = "form-control", @visibility = "hidden" })
+                @Html.ValidationMessageFor(model => model.gebruikerId, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Vereniging.naam, "naam", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Vereniging.naam, new { htmlAttributes = new { @class = "form-control", @readonly = "true" } })
+                @Html.HiddenFor(model => model.verenigingId)
+                @*@Html.DropDownList("verenigingId", null, htmlAttributes: new { @class = "form-control", @visibility = "hidden" })
+                @Html.ValidationMessageFor(model => model.verenigingId, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.saldo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.saldo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.saldo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.rol, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.rol, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.rol, "", new { @class = "text-danger" })*@
+                @Html.DropDownList("rol", null, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Opslaan" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Terug naar lijst", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

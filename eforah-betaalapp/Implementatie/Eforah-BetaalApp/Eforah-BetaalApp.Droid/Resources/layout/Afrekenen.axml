@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        android:id="@+id/standardHeader"
+        layout="@layout/MainToolbar" />
+    <TextView
+        android:text="Vul hier het bedrag in dat moet worden afgeschreven"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/AfrekenenTextView"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp" />
+    <EditText
+        android:hint="Bedrag"
+        android:id="@+id/AfrekenenBedragEditText"
+        android:inputType="number"
+        android:digits="0123456789.,"
+        android:background="@drawable/border"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="60dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp" />
+    <Button
+        android:text="Scannen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/AfrekenenScanButton"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:background="@color/colorPrimaryLight" />
+</LinearLayout>

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<EforahWebapp.Models.Mededeling>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Nieuwe mededeling aanmaken", "Create")
+</p>
+<table id="dataTable" class="table display">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.plaatsingDatum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.titel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.mededeling1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vereniging.naam)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.plaatsingDatum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.titel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.mededeling1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vereniging.naam)
+                </td>
+                <td>
+                    @Html.ActionLink("Wijzigen", "Edit", new { id = item.mededelingId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.mededelingId }) |
+                    @Html.ActionLink("Verwijderen", "Delete", new { id = item.mededelingId })
+                </td>
+            </tr>
+        }
+        </tbody>
+
+</table>
+<button class="btn btn-info col-md-2" type="button" id="HomeButton" value="Home" style="margin-bottom:4px"
+        onclick="location.href='@Url.Action("index", "Home")'">
+    Home
+</button>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/dataTables")
+}

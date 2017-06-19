@@ -1,0 +1,615 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="eforahbetaalappModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__EFMigrationsHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bestand">
+          <Key>
+            <PropertyRef Name="bestandId" />
+          </Key>
+          <Property Name="bestandId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="url" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="verenigingId" Type="int" Nullable="false" />
+          <Property Name="docType" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="docNaam" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="docGrootte" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gebruiker">
+          <Key>
+            <PropertyRef Name="gebruikerId" />
+          </Key>
+          <Property Name="gebruikerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="locatieId" Type="int" Nullable="false" />
+          <Property Name="gebruikersnaam" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="wachtwoord" Type="char" MaxLength="128" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="telefoonnummer" Type="varchar" MaxLength="12" />
+          <Property Name="telefoonnummerAlt" Type="varchar" MaxLength="12" />
+          <Property Name="voornaam" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="achternaam" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="foto" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Lid">
+          <Key>
+            <PropertyRef Name="lidId" />
+          </Key>
+          <Property Name="lidId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="gebruikerId" Type="int" Nullable="false" />
+          <Property Name="verenigingId" Type="int" Nullable="false" />
+          <Property Name="saldo" Type="money" Nullable="false" />
+          <Property Name="rol" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Locatie">
+          <Key>
+            <PropertyRef Name="locatieId" />
+          </Key>
+          <Property Name="locatieId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="postcode" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="huisnummer" Type="int" Nullable="false" />
+          <Property Name="adres" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="plaats" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mededeling">
+          <Key>
+            <PropertyRef Name="mededelingId" />
+          </Key>
+          <Property Name="mededelingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="verenigingId" Type="int" Nullable="false" />
+          <Property Name="plaatsingDatum" Type="datetime" Nullable="false" />
+          <Property Name="titel" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="mededeling" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Transactie">
+          <Key>
+            <PropertyRef Name="transactieId" />
+          </Key>
+          <Property Name="transactieId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lidId" Type="int" Nullable="false" />
+          <Property Name="transactieDatum" Type="datetime" Nullable="false" />
+          <Property Name="bedrag" Type="smallmoney" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vereniging">
+          <Key>
+            <PropertyRef Name="verenigingId" />
+          </Key>
+          <Property Name="verenigingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="locatieId" Type="int" Nullable="false" />
+          <Property Name="naam" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="facebookGroupId" Type="bigint" />
+          <Property Name="agendaLink" Type="nvarchar" MaxLength="300" />
+          <Property Name="telefoonnummer" Type="varchar" MaxLength="12" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="facebookAdminId" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <Association Name="FK_BESTAND_RLVERENIG_VERENIGI">
+          <End Role="Vereniging" Type="Self.Vereniging" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Bestand" Type="Self.Bestand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vereniging">
+              <PropertyRef Name="verenigingId" />
+            </Principal>
+            <Dependent Role="Bestand">
+              <PropertyRef Name="verenigingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GEBRUIKER_GEBRUIKERID">
+          <End Role="Gebruiker" Type="Self.Gebruiker" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Lid" Type="Self.Lid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gebruiker">
+              <PropertyRef Name="gebruikerId" />
+            </Principal>
+            <Dependent Role="Lid">
+              <PropertyRef Name="gebruikerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LID_LIDID_TRANSACTIE">
+          <End Role="Lid" Type="Self.Lid" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Transactie" Type="Self.Transactie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lid">
+              <PropertyRef Name="lidId" />
+            </Principal>
+            <Dependent Role="Transactie">
+              <PropertyRef Name="lidId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LOCATIE_LOCATIEID_GEB">
+          <End Role="Locatie" Type="Self.Locatie" Multiplicity="1" />
+          <End Role="Gebruiker" Type="Self.Gebruiker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locatie">
+              <PropertyRef Name="locatieId" />
+            </Principal>
+            <Dependent Role="Gebruiker">
+              <PropertyRef Name="locatieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEDEDELI_RL_VERENI_VERENIGI">
+          <End Role="Vereniging" Type="Self.Vereniging" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Mededeling" Type="Self.Mededeling" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vereniging">
+              <PropertyRef Name="verenigingId" />
+            </Principal>
+            <Dependent Role="Mededeling">
+              <PropertyRef Name="verenigingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VERENIGI_RL_VERENI_LOCATIE">
+          <End Role="Locatie" Type="Self.Locatie" Multiplicity="1" />
+          <End Role="Vereniging" Type="Self.Vereniging" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locatie">
+              <PropertyRef Name="locatieId" />
+            </Principal>
+            <Dependent Role="Vereniging">
+              <PropertyRef Name="locatieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VERENIGING_VERENIGINGID">
+          <End Role="Vereniging" Type="Self.Vereniging" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Lid" Type="Self.Lid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vereniging">
+              <PropertyRef Name="verenigingId" />
+            </Principal>
+            <Dependent Role="Lid">
+              <PropertyRef Name="verenigingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="eforahbetaalappModelStoreContainer">
+          <EntitySet Name="__EFMigrationsHistory" EntityType="Self.__EFMigrationsHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bestand" EntityType="Self.Bestand" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gebruiker" EntityType="Self.Gebruiker" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lid" EntityType="Self.Lid" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Locatie" EntityType="Self.Locatie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mededeling" EntityType="Self.Mededeling" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transactie" EntityType="Self.Transactie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vereniging" EntityType="Self.Vereniging" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BESTAND_RLVERENIG_VERENIGI" Association="Self.FK_BESTAND_RLVERENIG_VERENIGI">
+            <End Role="Vereniging" EntitySet="Vereniging" />
+            <End Role="Bestand" EntitySet="Bestand" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GEBRUIKER_GEBRUIKERID" Association="Self.FK_GEBRUIKER_GEBRUIKERID">
+            <End Role="Gebruiker" EntitySet="Gebruiker" />
+            <End Role="Lid" EntitySet="Lid" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LID_LIDID_TRANSACTIE" Association="Self.FK_LID_LIDID_TRANSACTIE">
+            <End Role="Lid" EntitySet="Lid" />
+            <End Role="Transactie" EntitySet="Transactie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LOCATIE_LOCATIEID_GEB" Association="Self.FK_LOCATIE_LOCATIEID_GEB">
+            <End Role="Locatie" EntitySet="Locatie" />
+            <End Role="Gebruiker" EntitySet="Gebruiker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEDEDELI_RL_VERENI_VERENIGI" Association="Self.FK_MEDEDELI_RL_VERENI_VERENIGI">
+            <End Role="Vereniging" EntitySet="Vereniging" />
+            <End Role="Mededeling" EntitySet="Mededeling" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VERENIGI_RL_VERENI_LOCATIE" Association="Self.FK_VERENIGI_RL_VERENI_LOCATIE">
+            <End Role="Locatie" EntitySet="Locatie" />
+            <End Role="Vereniging" EntitySet="Vereniging" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VERENIGING_VERENIGINGID" Association="Self.FK_VERENIGING_VERENIGINGID">
+            <End Role="Vereniging" EntitySet="Vereniging" />
+            <End Role="Lid" EntitySet="Lid" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="eforahbetaalappModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Bestand">
+          <Key>
+            <PropertyRef Name="bestandId" />
+          </Key>
+          <Property Name="bestandId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="url" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="verenigingId" Type="Int32" Nullable="false" />
+          <Property Name="docType" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="docNaam" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="docGrootte" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Vereniging" Relationship="Self.FK_BESTAND_RLVERENIG_VERENIGI" FromRole="Bestand" ToRole="Vereniging" />
+        </EntityType>
+        <EntityType Name="Gebruiker">
+          <Key>
+            <PropertyRef Name="gebruikerId" />
+          </Key>
+          <Property Name="gebruikerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="locatieId" Type="Int32" Nullable="false" />
+          <Property Name="gebruikersnaam" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="wachtwoord" Type="String" MaxLength="128" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefoonnummer" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="voornaam" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="achternaam" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Lid" Relationship="Self.FK_GEBRUIKER_GEBRUIKERID" FromRole="Gebruiker" ToRole="Lid" />
+          <NavigationProperty Name="Locatie" Relationship="Self.FK_LOCATIE_LOCATIEID_GEB" FromRole="Gebruiker" ToRole="Locatie" />
+          <Property Name="telefoonnummerAlt" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="foto" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Lid">
+          <Key>
+            <PropertyRef Name="lidId" />
+          </Key>
+          <Property Name="lidId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gebruikerId" Type="Int32" Nullable="false" />
+          <Property Name="verenigingId" Type="Int32" Nullable="false" />
+          <Property Name="saldo" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="rol" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Gebruiker" Relationship="Self.FK_GEBRUIKER_GEBRUIKERID" FromRole="Lid" ToRole="Gebruiker" />
+          <NavigationProperty Name="Transactie" Relationship="Self.FK_LID_LIDID_TRANSACTIE" FromRole="Lid" ToRole="Transactie" />
+          <NavigationProperty Name="Vereniging" Relationship="Self.FK_VERENIGING_VERENIGINGID" FromRole="Lid" ToRole="Vereniging" />
+        </EntityType>
+        <EntityType Name="Locatie">
+          <Key>
+            <PropertyRef Name="locatieId" />
+          </Key>
+          <Property Name="locatieId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="postcode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="huisnummer" Type="Int32" Nullable="false" />
+          <Property Name="adres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="plaats" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Gebruiker" Relationship="Self.FK_LOCATIE_LOCATIEID_GEB" FromRole="Locatie" ToRole="Gebruiker" />
+          <NavigationProperty Name="Vereniging" Relationship="Self.FK_VERENIGI_RL_VERENI_LOCATIE" FromRole="Locatie" ToRole="Vereniging" />
+        </EntityType>
+        <EntityType Name="Mededeling">
+          <Key>
+            <PropertyRef Name="mededelingId" />
+          </Key>
+          <Property Name="mededelingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="verenigingId" Type="Int32" Nullable="false" />
+          <Property Name="plaatsingDatum" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="titel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="mededeling1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Vereniging" Relationship="Self.FK_MEDEDELI_RL_VERENI_VERENIGI" FromRole="Mededeling" ToRole="Vereniging" />
+        </EntityType>
+        <EntityType Name="Transactie">
+          <Key>
+            <PropertyRef Name="transactieId" />
+          </Key>
+          <Property Name="transactieId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lidId" Type="Int32" Nullable="false" />
+          <Property Name="transactieDatum" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="bedrag" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Lid" Relationship="Self.FK_LID_LIDID_TRANSACTIE" FromRole="Transactie" ToRole="Lid" />
+        </EntityType>
+        <EntityType Name="Vereniging">
+          <Key>
+            <PropertyRef Name="verenigingId" />
+          </Key>
+          <Property Name="verenigingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="locatieId" Type="Int32" Nullable="false" />
+          <Property Name="naam" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="facebookAdminId" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+          <Property Name="facebookGroupId" Type="Int64" />
+          <Property Name="agendaLink" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="telefoonnummer" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Bestand" Relationship="Self.FK_BESTAND_RLVERENIG_VERENIGI" FromRole="Vereniging" ToRole="Bestand" />
+          <NavigationProperty Name="Lid" Relationship="Self.FK_VERENIGING_VERENIGINGID" FromRole="Vereniging" ToRole="Lid" />
+          <NavigationProperty Name="Locatie" Relationship="Self.FK_VERENIGI_RL_VERENI_LOCATIE" FromRole="Vereniging" ToRole="Locatie" />
+          <NavigationProperty Name="Mededeling" Relationship="Self.FK_MEDEDELI_RL_VERENI_VERENIGI" FromRole="Vereniging" ToRole="Mededeling" />
+        </EntityType>
+        <Association Name="FK_BESTAND_RLVERENIG_VERENIGI">
+          <End Role="Vereniging" Type="Self.Vereniging" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Bestand" Type="Self.Bestand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vereniging">
+              <PropertyRef Name="verenigingId" />
+            </Principal>
+            <Dependent Role="Bestand">
+              <PropertyRef Name="verenigingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GEBRUIKER_GEBRUIKERID">
+          <End Role="Gebruiker" Type="Self.Gebruiker" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Lid" Type="Self.Lid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gebruiker">
+              <PropertyRef Name="gebruikerId" />
+            </Principal>
+            <Dependent Role="Lid">
+              <PropertyRef Name="gebruikerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LOCATIE_LOCATIEID_GEB">
+          <End Role="Locatie" Type="Self.Locatie" Multiplicity="1" />
+          <End Role="Gebruiker" Type="Self.Gebruiker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locatie">
+              <PropertyRef Name="locatieId" />
+            </Principal>
+            <Dependent Role="Gebruiker">
+              <PropertyRef Name="locatieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LID_LIDID_TRANSACTIE">
+          <End Role="Lid" Type="Self.Lid" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Transactie" Type="Self.Transactie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lid">
+              <PropertyRef Name="lidId" />
+            </Principal>
+            <Dependent Role="Transactie">
+              <PropertyRef Name="lidId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VERENIGING_VERENIGINGID">
+          <End Role="Vereniging" Type="Self.Vereniging" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Lid" Type="Self.Lid" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vereniging">
+              <PropertyRef Name="verenigingId" />
+            </Principal>
+            <Dependent Role="Lid">
+              <PropertyRef Name="verenigingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VERENIGI_RL_VERENI_LOCATIE">
+          <End Role="Locatie" Type="Self.Locatie" Multiplicity="1" />
+          <End Role="Vereniging" Type="Self.Vereniging" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locatie">
+              <PropertyRef Name="locatieId" />
+            </Principal>
+            <Dependent Role="Vereniging">
+              <PropertyRef Name="locatieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEDEDELI_RL_VERENI_VERENIGI">
+          <End Role="Vereniging" Type="Self.Vereniging" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Mededeling" Type="Self.Mededeling" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vereniging">
+              <PropertyRef Name="verenigingId" />
+            </Principal>
+            <Dependent Role="Mededeling">
+              <PropertyRef Name="verenigingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="eforahbetaalappEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bestand" EntityType="Self.Bestand" />
+          <EntitySet Name="Gebruiker" EntityType="Self.Gebruiker" />
+          <EntitySet Name="Lid" EntityType="Self.Lid" />
+          <EntitySet Name="Locatie" EntityType="Self.Locatie" />
+          <EntitySet Name="Mededeling" EntityType="Self.Mededeling" />
+          <EntitySet Name="Transactie" EntityType="Self.Transactie" />
+          <EntitySet Name="Vereniging" EntityType="Self.Vereniging" />
+          <AssociationSet Name="FK_BESTAND_RLVERENIG_VERENIGI" Association="Self.FK_BESTAND_RLVERENIG_VERENIGI">
+            <End Role="Vereniging" EntitySet="Vereniging" />
+            <End Role="Bestand" EntitySet="Bestand" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GEBRUIKER_GEBRUIKERID" Association="Self.FK_GEBRUIKER_GEBRUIKERID">
+            <End Role="Gebruiker" EntitySet="Gebruiker" />
+            <End Role="Lid" EntitySet="Lid" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LOCATIE_LOCATIEID_GEB" Association="Self.FK_LOCATIE_LOCATIEID_GEB">
+            <End Role="Locatie" EntitySet="Locatie" />
+            <End Role="Gebruiker" EntitySet="Gebruiker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LID_LIDID_TRANSACTIE" Association="Self.FK_LID_LIDID_TRANSACTIE">
+            <End Role="Lid" EntitySet="Lid" />
+            <End Role="Transactie" EntitySet="Transactie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VERENIGING_VERENIGINGID" Association="Self.FK_VERENIGING_VERENIGINGID">
+            <End Role="Vereniging" EntitySet="Vereniging" />
+            <End Role="Lid" EntitySet="Lid" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VERENIGI_RL_VERENI_LOCATIE" Association="Self.FK_VERENIGI_RL_VERENI_LOCATIE">
+            <End Role="Locatie" EntitySet="Locatie" />
+            <End Role="Vereniging" EntitySet="Vereniging" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEDEDELI_RL_VERENI_VERENIGI" Association="Self.FK_MEDEDELI_RL_VERENI_VERENIGI">
+            <End Role="Vereniging" EntitySet="Vereniging" />
+            <End Role="Mededeling" EntitySet="Mededeling" />
+          </AssociationSet>
+          <EntitySet Name="C__EFMigrationsHistory" EntityType="eforahbetaalappModel.C__EFMigrationsHistory" />
+          <EntitySet Name="sysdiagrams" EntityType="eforahbetaalappModel.sysdiagrams" />
+        </EntityContainer>
+        <EntityType Name="C__EFMigrationsHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="eforahbetaalappModelStoreContainer" CdmEntityContainer="eforahbetaalappEntities">
+          <EntitySetMapping Name="Bestand">
+            <EntityTypeMapping TypeName="eforahbetaalappModel.Bestand">
+              <MappingFragment StoreEntitySet="Bestand">
+                <ScalarProperty Name="bestandId" ColumnName="bestandId" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="verenigingId" ColumnName="verenigingId" />
+                <ScalarProperty Name="docType" ColumnName="docType" />
+                <ScalarProperty Name="docNaam" ColumnName="docNaam" />
+                <ScalarProperty Name="docGrootte" ColumnName="docGrootte" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gebruiker">
+            <EntityTypeMapping TypeName="eforahbetaalappModel.Gebruiker">
+              <MappingFragment StoreEntitySet="Gebruiker">
+                <ScalarProperty Name="foto" ColumnName="foto" />
+                <ScalarProperty Name="telefoonnummerAlt" ColumnName="telefoonnummerAlt" />
+                <ScalarProperty Name="gebruikerId" ColumnName="gebruikerId" />
+                <ScalarProperty Name="locatieId" ColumnName="locatieId" />
+                <ScalarProperty Name="gebruikersnaam" ColumnName="gebruikersnaam" />
+                <ScalarProperty Name="wachtwoord" ColumnName="wachtwoord" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="telefoonnummer" ColumnName="telefoonnummer" />
+                <ScalarProperty Name="voornaam" ColumnName="voornaam" />
+                <ScalarProperty Name="achternaam" ColumnName="achternaam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lid">
+            <EntityTypeMapping TypeName="eforahbetaalappModel.Lid">
+              <MappingFragment StoreEntitySet="Lid">
+                <ScalarProperty Name="lidId" ColumnName="lidId" />
+                <ScalarProperty Name="gebruikerId" ColumnName="gebruikerId" />
+                <ScalarProperty Name="verenigingId" ColumnName="verenigingId" />
+                <ScalarProperty Name="saldo" ColumnName="saldo" />
+                <ScalarProperty Name="rol" ColumnName="rol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locatie">
+            <EntityTypeMapping TypeName="eforahbetaalappModel.Locatie">
+              <MappingFragment StoreEntitySet="Locatie">
+                <ScalarProperty Name="locatieId" ColumnName="locatieId" />
+                <ScalarProperty Name="postcode" ColumnName="postcode" />
+                <ScalarProperty Name="huisnummer" ColumnName="huisnummer" />
+                <ScalarProperty Name="adres" ColumnName="adres" />
+                <ScalarProperty Name="plaats" ColumnName="plaats" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mededeling">
+            <EntityTypeMapping TypeName="eforahbetaalappModel.Mededeling">
+              <MappingFragment StoreEntitySet="Mededeling">
+                <ScalarProperty Name="mededelingId" ColumnName="mededelingId" />
+                <ScalarProperty Name="verenigingId" ColumnName="verenigingId" />
+                <ScalarProperty Name="plaatsingDatum" ColumnName="plaatsingDatum" />
+                <ScalarProperty Name="titel" ColumnName="titel" />
+                <ScalarProperty Name="mededeling1" ColumnName="mededeling" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transactie">
+            <EntityTypeMapping TypeName="eforahbetaalappModel.Transactie">
+              <MappingFragment StoreEntitySet="Transactie">
+                <ScalarProperty Name="transactieId" ColumnName="transactieId" />
+                <ScalarProperty Name="lidId" ColumnName="lidId" />
+                <ScalarProperty Name="transactieDatum" ColumnName="transactieDatum" />
+                <ScalarProperty Name="bedrag" ColumnName="bedrag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vereniging">
+            <EntityTypeMapping TypeName="eforahbetaalappModel.Vereniging">
+              <MappingFragment StoreEntitySet="Vereniging">
+                <ScalarProperty Name="verenigingId" ColumnName="verenigingId" />
+                <ScalarProperty Name="locatieId" ColumnName="locatieId" />
+                <ScalarProperty Name="naam" ColumnName="naam" />
+                <ScalarProperty Name="facebookAdminId" ColumnName="facebookAdminId" />
+                <ScalarProperty Name="facebookGroupId" ColumnName="facebookGroupId" />
+                <ScalarProperty Name="agendaLink" ColumnName="agendaLink" />
+                <ScalarProperty Name="telefoonnummer" ColumnName="telefoonnummer" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="C__EFMigrationsHistory">
+            <EntityTypeMapping TypeName="eforahbetaalappModel.C__EFMigrationsHistory">
+              <MappingFragment StoreEntitySet="__EFMigrationsHistory">
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="eforahbetaalappModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

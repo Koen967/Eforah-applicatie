@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+  <style name="EforahTheme.Base" parent="Theme.AppCompat">
+    <item name="windowNoTitle">true</item>
+    <item name="windowActionBar">false</item>
+
+    <!-- UI Colors -->
+    <item name="colorPrimary">@color/actionBar</item>
+    <item name="colorPrimaryDark">@color/statusBar</item>
+    <item name="colorAccent">@color/colorAccent</item>
+    <!-- <item name="android:windowBackground">@color/backGround</item>-->
+
+    <!-- Setting Fonts -->
+    <item name="android:fontFamily">sans-serif-light</item>
+
+    <item name="android:windowBackground">@drawable/background</item>
+  </style>
+  
+  <style name="EforahTheme" parent="EforahTheme.Base">
+  </style>
+</resources>

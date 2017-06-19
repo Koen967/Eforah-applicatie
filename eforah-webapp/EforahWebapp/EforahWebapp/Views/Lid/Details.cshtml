@@ -1,0 +1,50 @@
+﻿@model EforahWebapp.Models.Lid
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Lid</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.saldo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.saldo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rol)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rol)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gebruiker.gebruikersnaam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gebruiker.gebruikersnaam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vereniging.naam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vereniging.naam)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Wijzigen", "Edit", new { id = Model.lidId }) |
+    @Html.ActionLink("Terug naar lijst", "Index")
+</p>

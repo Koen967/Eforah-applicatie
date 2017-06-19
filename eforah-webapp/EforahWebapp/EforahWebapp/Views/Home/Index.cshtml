@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Eforah Home";
+}
+<div class="jumbotron">
+    <h1>Welcome</h1>
+    <p class="lead">Ingelogd op gebruiker "@User.Identity.Name".</p>
+</div>
+<div class="row">
+    <button class="btn btn-info col-md-2 col-md-offset-1" type="button" id="LidButton" value="Leden" style="height: 60px"
+            onclick="location.href='@Url.Action("index", "Lid")'"> Leden 
+    </button>
+    <button class="btn btn-info col-md-2 col-md-offset-2" type="button" id="VerenigingButton" value="Verenigingen" style="height: 60px"
+            onclick="location.href='@Url.Action("index", "Vereniging")'"> Verenigingen
+    </button>
+    <button class="btn btn-info col-md-2 col-md-offset-2" type="button" id="MededelingButton" value="Mededelingen" style="height: 60px"
+            onclick="location.href='@Url.Action("index", "Mededeling")'"> Mededelingen        
+    </button>
+</div>
+<div class="row" style="margin-top:15px">
+    <button class="btn btn-info col-md-2 col-md-offset-1" type="button" id="GebruikerButton" value="Gebruikers" style="height: 60px"
+            onclick="location.href='@Url.Action("index", "Gebruiker")'">
+        Gebruikers
+    </button>
+</div>
